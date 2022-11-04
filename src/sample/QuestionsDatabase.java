@@ -1,4 +1,7 @@
 package sample;
 
-public class QuestionsDatabase {
+public class QuestionsDatabase
+{
+
+
 }

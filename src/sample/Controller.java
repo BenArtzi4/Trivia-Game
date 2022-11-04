@@ -7,6 +7,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.FileNotFoundException;
+
 public class Controller {
 
     @FXML
@@ -37,6 +39,9 @@ public class Controller {
     private Button submitBtn;
 
     GameLogic game = new GameLogic();
+
+    public Controller() throws FileNotFoundException {
+    }
 
     @FXML
     void answer1Pressed(ActionEvent event) {
