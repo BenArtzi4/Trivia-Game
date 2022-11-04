@@ -21,9 +21,6 @@ public class GameLogic
         newGame();
     }
 
-    public static int getNumberOfQuestion() {
-        return NUMBER_OF_QUESTION;
-    }
 
 
     public Question getQuestion() {
@@ -34,9 +31,6 @@ public class GameLogic
         return askedQuestions;
     }
 
-    public int getQuestionNumber() {
-        return questionNumber;
-    }
 
     public int getScore() {
         return score;
@@ -55,9 +49,7 @@ public class GameLogic
         this.question = new Question(generateRandomForQuestion());
 
     }
-    public void isRightAnswer(int score) {
-        this.score = score;
-    }
+
 
     /*
     Generate a question that has not yet appeared
@@ -65,7 +57,7 @@ public class GameLogic
     public int generateRandomForQuestion()
     {
         Random ran = new Random();
-        int question = ran.nextInt(NUMBER_OF_QUESTION);;
+        int question = ran.nextInt(NUMBER_OF_QUESTION);
         while (askedQuestion(question))
         {
             question = ran.nextInt(NUMBER_OF_QUESTION);

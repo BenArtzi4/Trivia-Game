@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Question {
-    static final int NUMBER_OF_QUESTION = 12;
     static final int ROWS_IN_QUESTION = 5;
 
 
@@ -24,14 +23,6 @@ public class Question {
         this.numberOfQuestion = num;
         readQuestion(numberOfQuestion);
 
-    }
-
-    public int getNumberOfQuestion() {
-        return numberOfQuestion;
-    }
-
-    public String getQuestion() {
-        return question;
     }
 
     public String getRightAnswer() {

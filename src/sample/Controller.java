@@ -39,13 +39,14 @@ public class Controller {
 
     GameLogic game = new GameLogic();
     boolean firstGame = true;
-    boolean answered = false;
 
-    public Controller() throws FileNotFoundException {
+    public Controller() throws FileNotFoundException
+    {
     }
 
     @FXML
-    void answer1Pressed(ActionEvent event) throws FileNotFoundException {
+    void answer1Pressed(ActionEvent event) throws FileNotFoundException
+    {
         checkAnswer(event);
     }
 
@@ -65,7 +66,7 @@ public class Controller {
     }
 
     @FXML
-    void finishPressed(ActionEvent event) throws FileNotFoundException {
+    void finishPressed() throws FileNotFoundException {
         game.gameFinish();
     }
 
@@ -96,7 +97,7 @@ public class Controller {
 
         while (tempNums.size() < 4)
         {
-            answerNumber = ran.nextInt(4);;
+            answerNumber = ran.nextInt(4);
             if (!appearInTempNUms(tempNums, answerNumber))
             {
                 radios[answersCounter].setText(answers[answerNumber]);
