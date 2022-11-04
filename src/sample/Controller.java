@@ -26,6 +26,7 @@ public class Controller {
     @FXML
     private ToggleGroup answers;
 
+
     @FXML
     private Button finishBtn;
 
@@ -39,6 +40,7 @@ public class Controller {
     private Button submitBtn;
 
     GameLogic game = new GameLogic();
+    boolean firstGame = true;
 
     public Controller() throws FileNotFoundException {
     }
@@ -63,9 +65,24 @@ public class Controller {
 
     }
 
-    public void initialize()
-    {
+    public void initialize() throws FileNotFoundException {
         score.setText("Your current score is: " + game.getScore());
+        if (!firstGame)
+        {
+            game.newGame();
+        }
+        firstGame = false;
+        setTextInQuestion();
+    }
+
+    public void setTextInQuestion()
+    {
+        question.setText(game.getQuestion().question);
+    }
+
+    public void setTextInAnswers()
+    {
+
     }
 
 }

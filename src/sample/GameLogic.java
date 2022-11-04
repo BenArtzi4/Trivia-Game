@@ -8,12 +8,6 @@ public class GameLogic
 {
 
     static final int NUMBER_OF_QUESTION = 12;
-    //The line of the question is always the first
-    static final int QUESTION = 0;
-    //The line of the right answer is always the second
-    static final int CORRECT_ANSWER = 1;
-    //Each question contain 5 rows of question and 4 answers
-    static final int ROWS = 5;
 
     int score;
     Question question;
@@ -22,11 +16,25 @@ public class GameLogic
 
 
     public GameLogic() throws FileNotFoundException {
-        this.score = 0;
         askedQuestions = new ArrayList<Integer>();
-        questionNumber = generateRandomForQuestion();
-        Question question = new Question(questionNumber);
-        askedQuestions.add(questionNumber);
+        newGame();
+    }
+
+    public static int getNumberOfQuestion() {
+        return NUMBER_OF_QUESTION;
+    }
+
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public ArrayList<Integer> getAskedQuestions() {
+        return askedQuestions;
+    }
+
+    public int getQuestionNumber() {
+        return questionNumber;
     }
 
     public int getScore() {
@@ -56,7 +64,6 @@ public class GameLogic
     public int generateRandomForQuestion()
     {
         Random ran = new Random();
-        boolean asked = true;
         int question = ran.nextInt(NUMBER_OF_QUESTION);;
         while (askedQuestion(question))
         {
@@ -74,5 +81,16 @@ public class GameLogic
             }
         }
         return false;
+    }
+
+    public void newGame() throws FileNotFoundException {
+        if (askedQuestions.size() != 0)
+        {
+            askedQuestions.clear();
+        }
+        this.score = 0;
+        questionNumber = generateRandomForQuestion();
+        this.question = new Question(questionNumber);
+        askedQuestions.add(questionNumber);
     }
 }
