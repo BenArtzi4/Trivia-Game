@@ -1,5 +1,6 @@
 package sample;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -69,6 +70,7 @@ public class GameLogic
         {
             question = ran.nextInt(NUMBER_OF_QUESTION);
         }
+        askedQuestions.add(question);
         return question;
     }
 
@@ -91,6 +93,29 @@ public class GameLogic
         this.score = 0;
         questionNumber = generateRandomForQuestion();
         this.question = new Question(questionNumber);
-        askedQuestions.add(questionNumber);
+    }
+
+    public void addQuestionToArray() throws FileNotFoundException {
+        System.out.println(askedQuestions);
+
+    }
+
+    public void gameFinish() throws FileNotFoundException {
+        JOptionPane.showMessageDialog(null, "Well done!\nYour Score is: " + score, "Trivia", JOptionPane.INFORMATION_MESSAGE);
+        int answer = JOptionPane.showConfirmDialog(null,"Would you answer more questions?", "Trivia", JOptionPane.YES_NO_OPTION);
+        /*
+        Test again
+         */
+        if (answer == 0)
+        {
+            newGame();
+        }
+        else
+        {
+            System.exit(0);
+        }
+
+
+
     }
 }

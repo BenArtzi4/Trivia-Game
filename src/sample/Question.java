@@ -66,26 +66,20 @@ public class Question {
             {
                 case 0:
                     question = st;
-                    System.out.println("Question = " + question);
                     break;
                 case 1:
                     rightAnswer = st;
-                    System.out.println("rightAnswer = " + rightAnswer);
 
                     break;
                 case 2:
                     wrongAnswer1 = st;
-                    System.out.println("answer 1 = " + wrongAnswer1);
                     break;
                 case 3:
                     wrongAnswer2 = st;
-                    System.out.println("answer 2 = " + wrongAnswer2);
 
                     break;
                 case 4:
                     wrongAnswer3 = st;
-                    System.out.println("answer 3 = " + wrongAnswer3);
-
                     break;
             }
             lineCounter++;

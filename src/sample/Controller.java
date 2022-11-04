@@ -28,7 +28,6 @@ public class Controller {
     @FXML
     private ToggleGroup answers;
 
-
     @FXML
     private Button finishBtn;
 
@@ -37,9 +36,6 @@ public class Controller {
 
     @FXML
     private TextField score;
-
-    @FXML
-    private Button submitBtn;
 
     GameLogic game = new GameLogic();
     boolean firstGame = true;
@@ -68,6 +64,11 @@ public class Controller {
         checkAnswer(event);
     }
 
+    @FXML
+    void finishPressed(ActionEvent event) throws FileNotFoundException {
+        game.gameFinish();
+    }
+
     public void initialize() throws FileNotFoundException {
         score.setText("Your current score is: " + game.getScore());
         if (!firstGame)
@@ -91,18 +92,16 @@ public class Controller {
         int answersCounter = 0;
         ArrayList<Integer> tempNums = new ArrayList<Integer>();
         Random ran = new Random();
-        int questionNumber;
+        int answerNumber;
 
         while (tempNums.size() < 4)
         {
-            questionNumber = ran.nextInt(4);;
-            if (!appearInTempNUms(tempNums, questionNumber))
+            answerNumber = ran.nextInt(4);;
+            if (!appearInTempNUms(tempNums, answerNumber))
             {
-                radios[answersCounter].setText(answers[questionNumber]);
-                tempNums.add(questionNumber);
+                radios[answersCounter].setText(answers[answerNumber]);
+                tempNums.add(answerNumber);
                 answersCounter++;
-                System.out.println("answersCounter: " + answersCounter + "\nquestionNumber: " + questionNumber
-                        +  "\n" + answers[questionNumber]);
             }
 
         }
@@ -132,6 +131,12 @@ public class Controller {
         setTextInQuestion();
         setTextInAnswers();
         ((RadioButton) event.getSource()).setSelected(false);
+        score.setText("Your current score is: " + game.getScore());
+        game.addQuestionToArray();
+        if (game.getAskedQuestions().size() == 12)
+        {
+            game.gameFinish();
+        }
         score.setText("Your current score is: " + game.getScore());
     }
 }
