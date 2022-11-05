@@ -37,7 +37,13 @@ public class Controller {
     @FXML
     private TextField score;
 
+    /*
+    Creating a variable that represents the game logic and initializing it
+     */
     GameLogic game = new GameLogic();
+    /*
+    A variable representing whether this game is the first game played for determining values in the methods below
+     */
     boolean firstGame = true;
 
     public Controller() throws FileNotFoundException
@@ -51,26 +57,34 @@ public class Controller {
     }
 
     @FXML
-    void answer2Pressed(ActionEvent event) throws FileNotFoundException {
+    void answer2Pressed(ActionEvent event) throws FileNotFoundException
+    {
         checkAnswer(event);
     }
 
     @FXML
-    void answer3Pressed(ActionEvent event) throws FileNotFoundException {
+    void answer3Pressed(ActionEvent event) throws FileNotFoundException
+    {
         checkAnswer(event);
     }
 
     @FXML
-    void answer4Pressed(ActionEvent event) throws FileNotFoundException {
+    void answer4Pressed(ActionEvent event) throws FileNotFoundException
+    {
         checkAnswer(event);
     }
 
     @FXML
-    void finishPressed() throws FileNotFoundException {
+    void finishPressed() throws FileNotFoundException
+    {
         game.gameFinish();
     }
 
-    public void initialize() throws FileNotFoundException {
+    /*
+    A method to initialize the game
+     */
+    public void initialize() throws FileNotFoundException
+    {
         score.setText("Your current score is: " + game.getScore());
         if (!firstGame)
         {
@@ -81,11 +95,19 @@ public class Controller {
         setTextInAnswers();
     }
 
+
+    /*
+    A method that inserts the question text into the appropriate place
+     */
     public void setTextInQuestion()
     {
         question.setText(game.getQuestion().question);
     }
 
+
+    /*
+    A method that randomly places the questions in the right place
+     */
     public void setTextInAnswers()
     {
         String [] answers = new String []{game.getQuestion().getRightAnswer(), game.getQuestion().getWrongAnswer1(),game.getQuestion().getWrongAnswer2(),game.getQuestion().getWrongAnswer3()};
@@ -98,27 +120,37 @@ public class Controller {
         while (tempNums.size() < 4)
         {
             answerNumber = ran.nextInt(4);
-            if (!appearInTempNUms(tempNums, answerNumber))
+            if (!appearInTempNums(tempNums, answerNumber))
             {
                 radios[answersCounter].setText(answers[answerNumber]);
                 tempNums.add(answerNumber);
                 answersCounter++;
             }
-
         }
     }
 
-    private boolean appearInTempNUms(ArrayList<Integer> tempNums, int num)
+
+    /*
+    A method that checks whether the question number appears in questions that have already been asked
+     */
+    private boolean appearInTempNums(ArrayList<Integer> tempNums, int num)
     {
-        for (Integer tempNum : tempNums) {
-            if (tempNum == num) {
+        for (Integer tempNum : tempNums)
+        {
+            if (tempNum == num)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    public void checkAnswer(ActionEvent event) throws FileNotFoundException {
+
+    /*
+    A method that checks whether the answer is correct
+     */
+    public void checkAnswer(ActionEvent event) throws FileNotFoundException
+    {
         String currAnswer = ((RadioButton) event.getSource()).getText();
         if (currAnswer.equals(game.getQuestion().getRightAnswer()))
         {

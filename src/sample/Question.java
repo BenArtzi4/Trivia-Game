@@ -4,11 +4,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Question {
+/*
+A class representing the current question in the game
+ */
+public class Question
+{
+    /*
+    A final variable that holds the number of servers relevant to each question - one question and four answers
+     */
     static final int ROWS_IN_QUESTION = 5;
-
-
+    /*
+    A variable that holds the question number
+     */
     int numberOfQuestion;
+
+    /*
+    Variables that hold the text of the question and the answers
+     */
     String question;
     String rightAnswer;
     String wrongAnswer1;
@@ -17,33 +29,45 @@ public class Question {
 
 
     /*
-    Get the number of the question to set
+    Constructor that gets the number of the question to set
      */
-    public Question(int num) throws FileNotFoundException {
+    public Question(int num) throws FileNotFoundException
+    {
         this.numberOfQuestion = num;
         readQuestion(numberOfQuestion);
 
     }
 
-    public String getRightAnswer() {
+    /*
+    Getters
+     */
+    public String getRightAnswer()
+    {
         return rightAnswer;
     }
 
-    public String getWrongAnswer1() {
+    public String getWrongAnswer1()
+    {
         return wrongAnswer1;
     }
 
-    public String getWrongAnswer2() {
+    public String getWrongAnswer2()
+    {
         return wrongAnswer2;
     }
 
-    public String getWrongAnswer3() {
+    public String getWrongAnswer3()
+    {
         return wrongAnswer3;
     }
 
+    /*
+    A method that reads the current question from the text and the relevant answers
+     */
     private void readQuestion(int questionNUmber) throws FileNotFoundException {
         int lineCounter = 0;
         Scanner input = new Scanner(new File("trivia.txt"));
+        // Skipping over all irrelevant lines
         while (lineCounter < (questionNUmber*ROWS_IN_QUESTION))
         {
             String st = input.nextLine();
@@ -74,7 +98,6 @@ public class Question {
                     break;
             }
             lineCounter++;
-
         }
         input.close();
 

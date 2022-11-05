@@ -8,51 +8,76 @@ import java.util.Random;
 public class GameLogic
 {
 
+    /*
+    A final variable that holds the total number of questions in the file
+     */
     static final int NUMBER_OF_QUESTION = 12;
 
+    /*
+    A variable that holds the player's current score
+     */
     int score;
+
+    /*
+    A variable that holds the current question
+     */
     Question question;
+    /*
+    Array of the numbers of the questions asked
+     */
     ArrayList<Integer> askedQuestions;
+    /*
+    A variable that holds the current question number
+     */
     int questionNumber;
 
-
-    public GameLogic() throws FileNotFoundException {
+    /*
+    A constructor that initializes the relevant variables and chooses question randomness from the file
+     */
+    public GameLogic() throws FileNotFoundException
+    {
         askedQuestions = new ArrayList<Integer>();
         newGame();
     }
 
 
-
+    /*
+    Getters
+     */
     public Question getQuestion() {
         return question;
     }
 
-    public ArrayList<Integer> getAskedQuestions() {
+    public ArrayList<Integer> getAskedQuestions()
+    {
         return askedQuestions;
     }
 
-
-    public int getScore() {
+    public int getScore()
+    {
         return score;
     }
 
-    public void rightAnswer() {
+    public void rightAnswer()
+    {
         this.score += 10;
     }
 
-    public void wrongAnswer() {
+    public void wrongAnswer()
+    {
         this.score -= 5;
     }
 
-    // creates new question Object
-    public void newQuestion() throws FileNotFoundException {
+    // A method that creates new question Object
+    public void newQuestion() throws FileNotFoundException
+    {
         this.question = new Question(generateRandomForQuestion());
 
     }
 
 
     /*
-    Generate a question that has not yet appeared
+    Generate a random question that has not yet appeared
      */
     public int generateRandomForQuestion()
     {
@@ -66,7 +91,9 @@ public class GameLogic
         return question;
     }
 
-    // get question number and return if that question number already asked
+    /*
+    A method that receives a question number and checks whether the question has already been asked
+    */
     public boolean askedQuestion(int question)
     {
         for (Integer askedQuestion : askedQuestions) {
@@ -77,7 +104,11 @@ public class GameLogic
         return false;
     }
 
-    public void newGame() throws FileNotFoundException {
+    /*
+    A method that initializes a new game and the relevant variables
+     */
+    public void newGame() throws FileNotFoundException
+    {
         if (askedQuestions.size() != 0)
         {
             askedQuestions.clear();
@@ -87,27 +118,29 @@ public class GameLogic
         this.question = new Question(questionNumber);
     }
 
-    public void addQuestionToArray() throws FileNotFoundException {
+    /*
+    A method that adds the current question to the set of asked questions
+     */
+    public void addQuestionToArray() throws FileNotFoundException
+    {
         System.out.println(askedQuestions);
 
     }
 
-    public void gameFinish() throws FileNotFoundException {
+    /*
+    A method that is invoked when the game ends for some reason and checks if the player wants to play another game
+     */
+    public void gameFinish() throws FileNotFoundException
+    {
         JOptionPane.showMessageDialog(null, "Well done!\nYour Score is: " + score, "Trivia", JOptionPane.INFORMATION_MESSAGE);
         int answer = JOptionPane.showConfirmDialog(null,"Would you answer more questions?", "Trivia", JOptionPane.YES_NO_OPTION);
         /*
         Test again
          */
-        if (answer == 0)
-        {
-            newGame();
-        }
-        else
+        if (answer != 0)
         {
             System.exit(0);
         }
-
-
-
+        newGame();
     }
 }
