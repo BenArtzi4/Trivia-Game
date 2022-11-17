@@ -38,6 +38,10 @@ public class Controller {
     @FXML
     private TextField score;
 
+    final int NUMBER_OF_QUESTIONS = 12;
+    final int NUMBER_OF_ANSWERS = 4;
+
+
     /*
     Creating a variable that represents the game logic and initializing it
      */
@@ -118,9 +122,9 @@ public class Controller {
         Random ran = new Random();
         int answerNumber;
 
-        while (tempNums.size() < 4)
+        while (tempNums.size() < NUMBER_OF_ANSWERS)
         {
-            answerNumber = ran.nextInt(4);
+            answerNumber = ran.nextInt(NUMBER_OF_ANSWERS);
             if (!appearInTempNums(tempNums, answerNumber))
             {
                 radios[answersCounter].setText(answers[answerNumber]);
@@ -171,7 +175,7 @@ public class Controller {
         ((RadioButton) event.getSource()).setSelected(false);
         score.setText("Your current score is: " + game.getScore());
         game.addQuestionToArray();
-        if (game.getAskedQuestions().size() == 12)
+        if (game.getAskedQuestions().size() == NUMBER_OF_QUESTIONS)
         {
             game.gameFinish();
         }
