@@ -123,15 +123,6 @@ public class GameLogic
     }
 
     /*
-    A method that adds the current question to the set of asked questions
-     */
-    public void addQuestionToArray() throws FileNotFoundException
-    {
-        System.out.println(askedQuestions);
-
-    }
-
-    /*
     A method that is invoked when the game ends for some reason and checks if the player wants to play another game
      */
     public void gameFinish() throws FileNotFoundException

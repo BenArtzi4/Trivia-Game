@@ -174,7 +174,6 @@ public class Controller {
         setTextInAnswers();
         ((RadioButton) event.getSource()).setSelected(false);
         score.setText("Your current score is: " + game.getScore());
-        game.addQuestionToArray();
         if (game.getAskedQuestions().size() == NUMBER_OF_QUESTIONS)
         {
             game.gameFinish();
