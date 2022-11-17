@@ -11,7 +11,11 @@ public class GameLogic
     /*
     A final variable that holds the total number of questions in the file
      */
-    static final int NUMBER_OF_QUESTION = 12;
+    final int NUMBER_OF_QUESTION = 12;
+    final int INITIAL = 0;
+    final int RIGHT_ANSWER_POINTS = 10;
+    final int WRONG_ANSWER_POINTS = 5;
+
 
     /*
     A variable that holds the player's current score
@@ -60,12 +64,12 @@ public class GameLogic
 
     public void rightAnswer()
     {
-        this.score += 10;
+        this.score += RIGHT_ANSWER_POINTS;
     }
 
     public void wrongAnswer()
     {
-        this.score -= 5;
+        this.score -= WRONG_ANSWER_POINTS;
     }
 
     // A method that creates new question Object
@@ -109,11 +113,11 @@ public class GameLogic
      */
     public void newGame() throws FileNotFoundException
     {
-        if (askedQuestions.size() != 0)
+        if (askedQuestions.size() != INITIAL)
         {
             askedQuestions.clear();
         }
-        this.score = 0;
+        this.score = INITIAL;
         questionNumber = generateRandomForQuestion();
         this.question = new Question(questionNumber);
     }
@@ -137,7 +141,7 @@ public class GameLogic
         /*
         Test again
          */
-        if (answer != 0)
+        if (answer != INITIAL)
         {
             System.exit(0);
         }
