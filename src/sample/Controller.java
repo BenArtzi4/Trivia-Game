@@ -7,6 +7,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -155,10 +156,14 @@ public class Controller {
         if (currAnswer.equals(game.getQuestion().getRightAnswer()))
         {
             game.rightAnswer();
+            JOptionPane.showMessageDialog(null, "Correct answer, Well done");
+
         }
         else
         {
             game.wrongAnswer();
+            JOptionPane.showMessageDialog(null, "Wrong answer\nThe right answer is: " + game.getQuestion().getRightAnswer());
+
         }
         game.newQuestion();
         setTextInQuestion();
